@@ -1,0 +1,12 @@
+.triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 50rem 50rem 0 0;
+    border-color: #FED931 transparent transparent transparent;
+}
+
+.details-container {
+    margin: 0;
+    padding: 0;
+}
