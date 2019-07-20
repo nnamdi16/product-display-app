@@ -5,8 +5,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import promise from "redux-promise";
 import logger from "redux-logger";
-import "../node_modules/font-awesome/css/font-awesome.min.css";
-import reducers from "./reducers";
+import reducers from "./components/Details/reducer";
 
 const App = lazy(() => import("./App"));
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

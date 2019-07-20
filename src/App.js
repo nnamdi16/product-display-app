@@ -6,7 +6,8 @@ import Details from "./components/Details/Details";
 function App() {
   return (
     <div className="App">
-      <Details />
+      <Form />
+      {/* <Details /> */}
     </div>
   );
 }
