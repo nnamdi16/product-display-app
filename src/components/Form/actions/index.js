@@ -3,11 +3,12 @@ import apiPlaceholder from "../../../apis/apiPlaceholder";
 
 export const onPostShoes = data => async dispatch => {
   try {
-    const response = await apiPlaceholder.post("/post", data);
+    const response = await apiPlaceholder.post("/footwears", data);
     dispatch({
       type: ADD_SHOE,
       payload: response.data
     });
+    console.log(response);
   } catch (error) {
     console.log(error);
   } finally {
