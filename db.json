@@ -1,0 +1,50 @@
+{
+
+    "footwears": [{
+            "id": 1,
+            "Name": "Addidas Kampung",
+            "Description": " It is a generic name for cheap black rubber shoes that are usually made in Malaysia. Being made 100% out of rubber, they are waterproof, easy to dry, and thus ideal for trekking in tropical weather.",
+            "Category": "Canvas",
+            "Image": "https://images.unsplash.com/photo-1519810409043-b6d44921bfa2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+            "Color": ["Green", "Yellow", "bBlack"],
+            "Sizes": ["16", "17", "18", "19"]
+        },
+        {
+            "id": 2,
+            "Name": "Chuck Taylor",
+            "Description": " It is a generic name for cheap black rubber shoes that are usually made in Malaysia. Being made 100% out of rubber, they are waterproof, easy to dry, and thus ideal for trekking in tropical weather.",
+            "Category": "Canvas",
+            "Image": "https://images.unsplash.com/photo-1494732048068-9c72e4223cc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+            "Color": ["Brown", "Blue", "Black"],
+            "Sizes": ["16", "17", "18", "19"]
+        },
+
+        {
+            "id": 2,
+            "Name": "Boots",
+            "Description": " It is a generic name for cheap black rubber shoes that are usually made in Malaysia. Being made 100% out of rubber, they are waterproof, easy to dry, and thus ideal for trekking in tropical weather.",
+            "Category": "Canvas",
+            "Image": "https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+            "Color": ["Brown", "Blue", "Black"],
+            "Sizes": ["16", "17", "18", "19"]
+        },
+        {
+            "id": 2,
+            "Name": "Lita",
+            "Description": " It is a generic name for cheap black rubber shoes that are usually made in Malaysia. Being made 100% out of rubber, they are waterproof, easy to dry, and thus ideal for trekking in tropical weather.",
+            "Category": "Canvas",
+            "Image": "https://images.unsplash.com/photo-1505874462322-dfcf87f819a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+            "Color": ["Brown", "Blue", "Black"],
+            "Sizes": ["16", "17", "18", "19"]
+        },
+        {
+            "id": 2,
+            "Name": "Timberland",
+            "Description": " It is a generic name for cheap black rubber shoes that are usually made in Malaysia. Being made 100% out of rubber, they are waterproof, easy to dry, and thus ideal for trekking in tropical weather.",
+            "Category": "Canvas",
+            "Image": "https://images.unsplash.com/photo-1515555230216-82228b88ea98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+            "Color": ["Brown", "Blue", "Black"],
+            "Sizes": ["16", "17", "18", "19"]
+        }
+    ]
+}
