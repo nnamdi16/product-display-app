@@ -77,3 +77,30 @@ li {
     height: 4rem;
     padding-right: 2px;
 }
+
+.file-upload {
+    width: 32rem;
+    height: 26rem;
+    border: 2px solid black;
+}
+
+.img-upload {
+    width: 10%;
+    height: 10%;
+    position: relative;
+    right: 50%;
+    margin: 0 auto;
+}
+
+.input-upload {
+    width: 27rem;
+    height: 100%;
+    z-index: 2;
+}
+
+.upload-size {
+    width: 50%;
+    height: 50%;
+    position: relative;
+    right: 50%;
+}
