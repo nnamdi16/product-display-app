@@ -1,8 +1,55 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import "./form.css";
-
+import { onGetShoes } from "../Details/actions";
+import imageUpload from "../images/arrow-up (1).svg";
+import ImageUpload from "./ImageUpload";
 class App extends Component {
+  state = {
+    imageUrl: "",
+    productName: "",
+    price: "",
+    description: "",
+    file: "",
+    imagePreviewUrl: ""
+  };
+
+  handleSubmit(e) {
+    e.preventDEfault();
+    console.log("handle uploading", this.state.file);
+  }
+
+  handleImageChange(e) {
+    e.preventDefault();
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    if (file && file.type.match("image.*")) {
+      reader.readAsDataURL(file);
+    } else {
+      this.setState({
+        file: "",
+        imagePreviewUrl: ""
+      });
+    }
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result
+      });
+    };
+  }
+  componentDidMount() {
+    this.props.onGetShoes();
+  }
   render() {
+    let { imagePreviewUrl } = this.state;
+    let imagePreview = null;
+    if (imagePreviewUrl) {
+      imagePreview = (
+        <img src={imagePreviewUrl} className="upload-size" alt="img preview" />
+      );
+    }
     return (
       <div className="form-bg text-center p-4">
         <h1>Edit Digital Product</h1>
@@ -59,15 +106,10 @@ class App extends Component {
         <div className="container-fluid ">
           <div className="row">
             <div className="col-sm-4 my-5">
-              <div className="jumbotron jumbotron-fluid">
-                <div className="container">
-                  <h1 className="display-4">Fluid jumbotron</h1>
-                  <p className="lead">
-                    This is a modified jumbotron that occupies the entire
-                    horizontal space of its parent.
-                  </p>
-                </div>
-              </div>
+              <ImageUpload
+                handleImageChange={e => this.handleImageChange(e)}
+                imagePreview={imagePreview}
+              />
               <p>Tag</p>
               <p>Categories</p>
             </div>
@@ -110,30 +152,33 @@ class App extends Component {
         </div>
         <div className="container-fluid">
           <div className="row ">
-            <div class="d-flex flex-row bd-highlight mb-3 ">
-              <div class="bd-highlight footer-row">
-                <button type="button" class="btn btn-primary footer-button ">
+            <div className="d-flex flex-row bd-highlight mb-3 ">
+              <div className="bd-highlight footer-row">
+                <button
+                  type="button"
+                  className="btn btn-primary footer-button "
+                >
                   Cancel
                 </button>
               </div>
-              <div class=" bd-highlight footer-row">
-                <button type="button" class="btn btn-primary footer-button">
+              <div className=" bd-highlight footer-row">
+                <button type="button" className="btn btn-primary footer-button">
                   Delete
                 </button>
               </div>
-              <div class="bd-highlight footer-row">
-                <button type="button" class="btn btn-primary footer-button">
+              <div className="bd-highlight footer-row">
+                <button type="button" className="btn btn-primary footer-button">
                   Save
                 </button>
               </div>
-              <div class="bd-highlight footer-row">
-                <button type="button" class="btn btn-primary footer-button">
+              <div className="bd-highlight footer-row">
+                <button type="button" className="btn btn-primary footer-button">
                   Save & Publish
                 </button>
               </div>
 
-              <div class="bd-highlight footer-row">
-                <button type="button" class="btn btn-primary footer-button">
+              <div className="bd-highlight footer-row">
+                <button type="button" className="btn btn-primary footer-button">
                   Primary
                 </button>
               </div>
@@ -145,4 +190,14 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  console.log(state.details.shoes);
+  return {
+    details: state.details.shoes
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { onGetShoes }
+)(App);
