@@ -1,25 +1,44 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { bindActionCreators } from "redux";
 import "./form.css";
 import { onGetShoes } from "../Details/actions";
+import { onPostShoes } from "./actions";
 import imageUpload from "../images/arrow-up (1).svg";
 import ImageUpload from "./ImageUpload";
+
 class App extends Component {
   state = {
-    imageUrl: "",
+    // imageUrl: "",
+    id: new Date(),
     productName: "",
-    price: "",
-    description: "",
-    file: "",
-    imagePreviewUrl: ""
+    price: ""
+    // description: "",
+    // file: "",
+    // imagePreviewUrl: ""
   };
-
-  handleSubmit(e) {
-    e.preventDEfault();
-    console.log("handle uploading", this.state.file);
+  componentDidMount() {
+    this.props.onGetShoes();
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    const shoe = {
+      name: this.state.name,
+      price: this.state.price
+    };
+    const result = this.props.onPostShoes(shoe);
+    console.log("handle uploading", result);
+    return result;
+  }
+
+  handleInputChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+    console.log(this.state);
+  };
   handleImageChange(e) {
     e.preventDefault();
     let reader = new FileReader();
@@ -38,9 +57,6 @@ class App extends Component {
         imagePreviewUrl: reader.result
       });
     };
-  }
-  componentDidMount() {
-    this.props.onGetShoes();
   }
   render() {
     let { imagePreviewUrl } = this.state;
@@ -105,6 +121,7 @@ class App extends Component {
         </nav>
         <div className="container-fluid ">
           <div className="row">
+            {/* <form onSubmit={e => this.handleSubmit(e)}> */}
             <div className="col-sm-4 my-5">
               <ImageUpload
                 handleImageChange={e => this.handleImageChange(e)}
@@ -118,15 +135,19 @@ class App extends Component {
                 className="form-control form-control-lg product-input"
                 type="text"
                 placeholder="Enter a digital product name ...."
+                name="name"
+                onChange={e => this.handleInputChange(e)}
               />
               <div className="price-title">Pricing</div>
               <div class="input-group input-group-price">
                 <input
                   type="text"
                   class="form-control form-control-lg"
-                  placeholder="Recipient's username"
-                  aria-label="Recipient's username"
+                  placeholder="$0.00"
+                  aria-label="price"
                   aria-describedby="button-addon2"
+                  name="price"
+                  onChange={e => this.handleInputChange(e)}
                 />
                 <div class="input-group-append">
                   <button
@@ -134,7 +155,7 @@ class App extends Component {
                     type="button"
                     id="button-addon2"
                   >
-                    Button
+                    Edit
                   </button>
                 </div>
               </div>
@@ -148,6 +169,7 @@ class App extends Component {
                 </div>
               </div>
             </div>
+            {/* </form> */}
           </div>
         </div>
         <div className="container-fluid">
@@ -167,7 +189,11 @@ class App extends Component {
                 </button>
               </div>
               <div className="bd-highlight footer-row">
-                <button type="button" className="btn btn-primary footer-button">
+                <button
+                  type="button"
+                  className="btn btn-primary footer-button"
+                  onClick={e => this.handleSubmit(e)}
+                >
                   Save
                 </button>
               </div>
@@ -189,7 +215,11 @@ class App extends Component {
     );
   }
 }
-
+const actioncreators = {
+  onPostShoes,
+  onGetShoes
+};
+// const mapDispatchToProps = dispatch => {};
 const mapStateToProps = state => {
   console.log(state.details.shoes);
   return {
@@ -199,5 +229,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { onGetShoes }
+  actioncreators
 )(App);

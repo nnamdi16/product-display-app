@@ -1,3 +1,4 @@
+import { ADD_SHOE } from "../actions/types";
 const initialState = {
   shoe: {}
 };
@@ -6,10 +7,10 @@ export default (state, action) => {
   state = initialState;
 
   switch (action.type) {
-    case "ADD_SHOE":
+    case ADD_SHOE:
       return {
         ...state,
-        recipe: action.payload
+        shoe: action.payload
       };
 
     default:
