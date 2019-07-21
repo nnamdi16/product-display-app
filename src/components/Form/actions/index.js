@@ -8,7 +8,6 @@ export const onPostShoes = data => async dispatch => {
       type: ADD_SHOE,
       payload: response.data
     });
-    console.log(response);
   } catch (error) {
     console.log(error);
   } finally {
