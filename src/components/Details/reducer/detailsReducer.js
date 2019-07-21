@@ -1,6 +1,7 @@
-import { GET_SHOES } from "../actions/types";
+import { GET_SHOES, GET_SHOE } from "../actions/types";
 const initialState = {
-  shoes: []
+  shoes: [],
+  shoe: {}
 };
 
 export default (state, action) => {
@@ -9,6 +10,8 @@ export default (state, action) => {
   switch (action.type) {
     case GET_SHOES:
       return { ...state, shoes: action.payload };
+    case GET_SHOE:
+      return { ...state, shoe: action.payload };
     default:
       return state;
   }
