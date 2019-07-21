@@ -1,13 +1,15 @@
 import React from "react";
 import "./App.css";
-import Form from "./components/Form/Form";
-import Details from "./components/Details/Details";
+// import Form from "./components/Form/Form";
+// import Details from "./components/Details/Details";
 
-function App() {
+function App({ children }) {
+  console.log(children);
   return (
     <div className="App">
-      <Form />
-      {/* <Details /> */}
+      {children}
+      {/* <Form />
+      <Details /> */}
     </div>
   );
 }
