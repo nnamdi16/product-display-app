@@ -6,6 +6,8 @@ import thunk from "redux-thunk";
 import promise from "redux-promise";
 import logger from "redux-logger";
 import reducers from "./components/Details/reducer";
+import Form from "./components/Form/Form";
+import Details from "./components/Details/Details";
 
 const App = lazy(() => import("./App"));
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -18,7 +20,10 @@ const Root = () => (
     <BrowserRouter>
       <Suspense fallback="loading...">
         <Switch>
-          <Route path="/" component={App} />
+          <App>
+            <Route path="/" exact component={Form} />
+            <Route path="/footwears/:id" component={Details} />
+          </App>
         </Switch>
       </Suspense>
     </BrowserRouter>
