@@ -8,6 +8,8 @@ import logger from "redux-logger";
 import reducers from "./components/Details/reducer";
 import Form from "./components/Form/Form";
 import Details from "./components/Details/Details";
+import Header from "./components/Header/Header";
+import List from "./components/List/List";
 
 const App = lazy(() => import("./App"));
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -21,8 +23,10 @@ const Root = () => (
       <Suspense fallback="loading...">
         <Switch>
           <App>
-            <Route path="/" exact component={Form} />
-            <Route path="/footwears/:id" component={Details} />
+            <Route exact path="/footwears/:id" component={Details} />
+            <Route exact path="/" component={Header} />
+            <Route exact path="/" component={List} />
+            <Route path="/edit" component={Form} />
           </App>
         </Switch>
       </Suspense>
