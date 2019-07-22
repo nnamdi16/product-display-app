@@ -7,31 +7,56 @@ import { onGetShoes } from "../Details/actions";
 import { onPostShoes } from "./actions";
 import imageUpload from "../images/arrow-up (1).svg";
 import ImageUpload from "./ImageUpload";
-
+import { Editor } from "react-draft-wysiwyg";
+import { EditorState, convertFromRaw, convertToRaw } from "draft-js";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg";
 class App extends Component {
   state = {
     // imageUrl: "",
     id: new Date(),
     productName: "",
-    price: ""
-    // description: "",
+    price: "",
+    editorState: EditorState.createEmpty()
     // file: "",
     // imagePreviewUrl: ""
   };
-  componentDidMount() {
-    this.props.onGetShoes();
-  }
+  // componentDidMount() {
+  //   this.props.onGetShoes();
+  // }
+  onChange = editorState => {
+    // console.log(description);
+    return this.setState({
+      editorState
+    });
+  };
 
-  handleSubmit(e) {
+  handleSubmit = async e => {
     e.preventDefault();
+
+    let convertedData = convertToRaw(
+      this.state.editorState.getCurrentContent()
+    );
     const shoe = {
       name: this.state.name,
-      price: this.state.price
+      price: this.state.price,
+      description: convertedData
     };
-    const result = this.props.onPostShoes(shoe);
-    console.log("handle uploading", result);
-    return result;
-  }
+    const { payload } = await this.props.onPostShoes(shoe);
+    console.log("handle uploading", payload);
+    await this.setState({
+      editorState: EditorState.createEmpty()
+    });
+    console.log(payload);
+    return payload;
+  };
+
+  handleSaveAndPublish = async e => {
+    e.preventDefault(e);
+    const { id } = await this.handleSubmit(e);
+    console.log(id);
+    this.props.history.push(`/footwears/${id}`);
+  };
 
   handleInputChange = e => {
     this.setState({
@@ -39,6 +64,7 @@ class App extends Component {
     });
     console.log(this.state);
   };
+
   handleImageChange(e) {
     e.preventDefault();
     let reader = new FileReader();
@@ -58,6 +84,7 @@ class App extends Component {
       });
     };
   }
+
   render() {
     let { imagePreviewUrl } = this.state;
     let imagePreview = null;
@@ -68,57 +95,6 @@ class App extends Component {
     }
     return (
       <div className="form-bg text-center p-4">
-        <h1>Edit Digital Product</h1>
-        <nav className="navbar navbar-expand-lg navbar-light form-bg">
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon" />
-          </button>
-          <div
-            className="collapse navbar-collapse menubar"
-            id="navbarSupportedContent"
-          >
-            <ul className="navbar-nav menu mt-4">
-              <li className="nav-item w-25">
-                <a className="nav-link pb-4 " href="#">
-                  Item<span className="sr-only">(current)</span>
-                </a>
-              </li>
-              <li className="nav-item w-25">
-                <a className="nav-link pb-4" href="#">
-                  Pricing and Upload<span className="sr-only">(current)</span>
-                </a>
-              </li>
-              <li className="nav-item w-25">
-                <a className="nav-link pb-4" href="#">
-                  Aditional Info
-                </a>
-              </li>
-              <li className="nav-item w-25">
-                <a className="nav-link pb-4" href="#">
-                  Form
-                </a>
-              </li>
-              <li className="nav-item w-25">
-                <a className="nav-link pb-4" href="#">
-                  Options
-                </a>
-              </li>
-              <li className="nav-item w-25">
-                <a className="nav-link pb-4" href="#">
-                  Social
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
         <div className="container-fluid ">
           <div className="row">
             {/* <form onSubmit={e => this.handleSubmit(e)}> */}
@@ -160,16 +136,18 @@ class App extends Component {
                 </div>
               </div>
               <div className="jumbotron jumbotron-fluid input-editor">
-                <div className="container">
-                  <h1 className="display-4">Fluid jumbotron</h1>
-                  <p className="lead">
-                    This is a modified jumbotron that occupies the entire
-                    horizontal space of its parent.
-                  </p>
-                </div>
+                <Editor
+                  // wrapperClassName="wrapper-class"
+                  // editorClassName="editor-class"
+
+                  wrapperClassName="demo-wrapper"
+                  editorClassName="editer-content"
+                  toolbarClassName="toolbar-class"
+                  editorState={this.state.editorState}
+                  onEditorStateChange={this.onChange}
+                />
               </div>
             </div>
-            {/* </form> */}
           </div>
         </div>
         <div className="container-fluid">
@@ -198,14 +176,12 @@ class App extends Component {
                 </button>
               </div>
               <div className="bd-highlight footer-row">
-                <button type="button" className="btn btn-primary footer-button">
+                <button
+                  type="button"
+                  className="btn btn-primary footer-button"
+                  onClick={e => this.handleSaveAndPublish(e)}
+                >
                   Save & Publish
-                </button>
-              </div>
-
-              <div className="bd-highlight footer-row">
-                <button type="button" className="btn btn-primary footer-button">
-                  Primary
                 </button>
               </div>
             </div>
@@ -216,10 +192,9 @@ class App extends Component {
   }
 }
 const actioncreators = {
-  onPostShoes,
-  onGetShoes
+  onPostShoes
 };
-// const mapDispatchToProps = dispatch => {};
+
 const mapStateToProps = state => {
   console.log(state.details.shoes);
   return {

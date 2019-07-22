@@ -14,15 +14,26 @@ class Details extends Component {
     const { details } = this.props;
     console.log(this.props);
     console.log(details);
+    // const { description } = details;
+    // console.log(description);
+    const { description: { blocks } = [] } = details;
+    console.log(blocks);
+
     if (!details.id) {
       return <div>NO RESULTS FOUND</div>;
     }
 
     return (
-      <div className="container-fluid details-container">
+      <div className="container-fluid details-container detail-body">
         <div className="row">
           <div className="col-sm-7">
-            <div className="triangle">Stop</div>
+            <div className="triangle">
+              <img
+                src={details.image}
+                alt="Shoe Display Img"
+                className="product-image rounded mx-auto d-block"
+              />
+            </div>
           </div>
           <div className="col-sm-5">
             <h1>{details.name}</h1>
@@ -30,10 +41,9 @@ class Details extends Component {
             <div>Stars</div>
             <section>
               <h3>INFINITE SUPPORT, TOTAL CONTROL</h3>
-              <p>
-                Thread borne delivers lightweight directional strength to
-                support the game's most brilliant player: stephen curry.
-              </p>
+              {blocks.map(block => (
+                <p key={"key"}>{block.text}</p>
+              ))}
             </section>
             <div>Colors</div>
             <p>Sizes</p>
