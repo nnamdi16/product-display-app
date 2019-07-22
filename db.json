@@ -2,7 +2,18 @@
     "footwears": [{
             "id": 1,
             "name": "Addidas Kampung",
-            "description": " It is a generic name for cheap black rubber shoes that are usually made in Malaysia. Being made 100% out of rubber, they are waterproof, easy to dry, and thus ideal for trekking in tropical weather.",
+            "description": {
+                "blocks": [{
+                    "key": "1h9pt",
+                    "text": " It is a generic name for cheap black rubber shoes that are usually made in Malaysia. Being made 100% out of rubber, they are waterproof, easy to dry, and thus ideal for trekking in tropical weather.",
+                    "type": "unstyled",
+                    "depth": 0,
+                    "inlineStyleRanges": [],
+                    "entityRanges": [],
+                    "data": {}
+                }],
+                "entityMap": {}
+            },
             "category": "Canvas",
             "image": "https://images.unsplash.com/photo-1519810409043-b6d44921bfa2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
             "color": [
@@ -21,7 +32,18 @@
         {
             "id": 2,
             "name": "Chuck Taylor",
-            "description": " It is a generic name for cheap black rubber shoes that are usually made in Malaysia. Being made 100% out of rubber, they are waterproof, easy to dry, and thus ideal for trekking in tropical weather.",
+            "description": {
+                "blocks": [{
+                    "key": "1h9pt",
+                    "text": " It is a generic name for cheap black rubber shoes that are usually made in Malaysia. Being made 100% out of rubber, they are waterproof, easy to dry, and thus ideal for trekking in tropical weather.",
+                    "type": "unstyled",
+                    "depth": 0,
+                    "inlineStyleRanges": [],
+                    "entityRanges": [],
+                    "data": {}
+                }],
+                "entityMap": {}
+            },
             "category": "Canvas",
             "image": "https://images.unsplash.com/photo-1494732048068-9c72e4223cc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
             "color": [
@@ -40,7 +62,18 @@
         {
             "id": 3,
             "name": "Boots",
-            "description": " It is a generic name for cheap black rubber shoes that are usually made in Malaysia. Being made 100% out of rubber, they are waterproof, easy to dry, and thus ideal for trekking in tropical weather.",
+            "description": {
+                "blocks": [{
+                    "key": "1h9pt",
+                    "text": " It is a generic name for cheap black rubber shoes that are usually made in Malaysia. Being made 100% out of rubber, they are waterproof, easy to dry, and thus ideal for trekking in tropical weather.",
+                    "type": "unstyled",
+                    "depth": 0,
+                    "inlineStyleRanges": [],
+                    "entityRanges": [],
+                    "data": {}
+                }],
+                "entityMap": {}
+            },
             "category": "Canvas",
             "image": "https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
             "color": [
@@ -59,7 +92,18 @@
         {
             "id": 4,
             "name": "Lita",
-            "description": " It is a generic name for cheap black rubber shoes that are usually made in Malaysia. Being made 100% out of rubber, they are waterproof, easy to dry, and thus ideal for trekking in tropical weather.",
+            "description": {
+                "blocks": [{
+                    "key": "1h9pt",
+                    "text": " It is a generic name for cheap black rubber shoes that are usually made in Malaysia. Being made 100% out of rubber, they are waterproof, easy to dry, and thus ideal for trekking in tropical weather.",
+                    "type": "unstyled",
+                    "depth": 0,
+                    "inlineStyleRanges": [],
+                    "entityRanges": [],
+                    "data": {}
+                }],
+                "entityMap": {}
+            },
             "category": "Canvas",
             "image": "https://images.unsplash.com/photo-1505874462322-dfcf87f819a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
             "color": [
@@ -78,7 +122,18 @@
         {
             "id": 5,
             "name": "Timberland",
-            "description": " It is a generic name for cheap black rubber shoes that are usually made in Malaysia. Being made 100% out of rubber, they are waterproof, easy to dry, and thus ideal for trekking in tropical weather.",
+            "description": {
+                "blocks": [{
+                    "key": "1h9pt",
+                    "text": " It is a generic name for cheap black rubber shoes that are usually made in Malaysia. Being made 100% out of rubber, they are waterproof, easy to dry, and thus ideal for trekking in tropical weather.",
+                    "type": "unstyled",
+                    "depth": 0,
+                    "inlineStyleRanges": [],
+                    "entityRanges": [],
+                    "data": {}
+                }],
+                "entityMap": {}
+            },
             "category": "Canvas",
             "image": "https://images.unsplash.com/photo-1515555230216-82228b88ea98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
             "color": [
@@ -95,39 +150,138 @@
             "price": "$360"
         },
         {
-            "name": "Shoe lace",
+            "name": "Lacing Shoe",
             "price": "$3000",
+            "description": {
+                "blocks": [{
+                    "key": "1h9pt",
+                    "text": "A fully laced shoe for everyone to wear",
+                    "type": "unstyled",
+                    "depth": 0,
+                    "inlineStyleRanges": [],
+                    "entityRanges": [],
+                    "data": {}
+                }],
+                "entityMap": {}
+            },
             "id": 6
         },
         {
-            "name": "Versace",
-            "price": "$2500",
+            "name": "Leather Shoes",
+            "price": "$250",
+            "description": {
+                "blocks": [{
+                    "key": "82iu5",
+                    "text": "😂 of leather work to inspire learning and hardwork 😁",
+                    "type": "unstyled",
+                    "depth": 0,
+                    "inlineStyleRanges": [{
+                            "offset": 0,
+                            "length": 52,
+                            "style": "fontsize-18"
+                        },
+                        {
+                            "offset": 0,
+                            "length": 52,
+                            "style": "BOLD"
+                        }
+                    ],
+                    "entityRanges": [],
+                    "data": {
+                        "text-align": "center"
+                    }
+                }],
+                "entityMap": {}
+            },
             "id": 7
         },
         {
-            "name": "Tennis ",
-            "price": "$4000",
+            "name": "Fashion Children's Mesh Permeable Sneakers Boys' Fashionable Mesh Shoes Girls' Leisure Shoes Baby Anti-skid Shoes",
+            "price": "$679",
+            "description": {
+                "blocks": [{
+                    "key": "1rmrq",
+                    "text": "Applicable age: children's clothes (1-3 years old), children's clothes (4-6 years old); Function: shock absorption, breathable, wear-resistant and non-slip",
+                    "type": "unstyled",
+                    "depth": 0,
+                    "inlineStyleRanges": [{
+                            "offset": 0,
+                            "length": 155,
+                            "style": "color-rgb(96,96,96)"
+                        },
+                        {
+                            "offset": 0,
+                            "length": 155,
+                            "style": "bgcolor-rgb(255,255,255)"
+                        },
+                        {
+                            "offset": 0,
+                            "length": 155,
+                            "style": "fontfamily-Roboto, Helvetica, Arial, sans-serif"
+                        },
+                        {
+                            "offset": 0,
+                            "length": 155,
+                            "style": "fontsize-11"
+                        }
+                    ],
+                    "entityRanges": [],
+                    "data": {}
+                }],
+                "entityMap": {}
+            },
             "id": 8
         },
         {
-            "name": "Tulip",
-            "price": "$789",
+            "name": "Itemwer",
+            "price": "$209",
+            "description": {
+                "blocks": [{
+                    "key": "733h2",
+                    "text": "Unit price. All the unit price",
+                    "type": "unstyled",
+                    "depth": 0,
+                    "inlineStyleRanges": [],
+                    "entityRanges": [],
+                    "data": {}
+                }],
+                "entityMap": {}
+            },
             "id": 9
         },
         {
-            "name": "Barsha",
-            "price": "$789",
+            "name": "Fresh work",
+            "price": "$23",
+            "description": {
+                "blocks": [{
+                    "key": "aggo8",
+                    "text": "Orfder",
+                    "type": "unstyled",
+                    "depth": 0,
+                    "inlineStyleRanges": [],
+                    "entityRanges": [],
+                    "data": {}
+                }],
+                "entityMap": {}
+            },
             "id": 10
         },
         {
-            "name": "Card soda",
-            "price": "$569",
+            "name": "Tracker",
+            "price": "$209",
+            "description": {
+                "blocks": [{
+                    "key": "92b0f",
+                    "text": "Refactor tracker is very important in this month of Jubilee",
+                    "type": "unstyled",
+                    "depth": 0,
+                    "inlineStyleRanges": [],
+                    "entityRanges": [],
+                    "data": {}
+                }],
+                "entityMap": {}
+            },
             "id": 11
-        },
-        {
-            "name": "Laced Shoe",
-            "price": "$300",
-            "id": 12
         }
     ]
 }
