@@ -15,9 +15,9 @@
 
 .menubar {
     height: 4.5rem;
-    box-shadow: 0 10px 6px -6px rgba(0, 0, 0, 0.08);
-    -webkit-box-shadow: 0 10px 6px -6px rgba(0, 0, 0, 0.08);
-    -moz-box-shadow: 0 10px 6px -6px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 7px 2px -6px rgba(0, 0, 0, 0.08);
+    -webkit-box-shadow: 0 7px 2px -6px rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: 0 7px 2px -6px rgba(0, 0, 0, 0.08);
     border-top: none;
 }
 
@@ -73,7 +73,7 @@ li {
 }
 
 .footer-row {
-    width: 17rem;
+    width: 21rem;
     height: 4rem;
     padding-right: 2px;
 }
@@ -103,4 +103,10 @@ li {
     height: 50%;
     position: relative;
     right: 50%;
+}
+
+.input-editor {
+    padding: 0;
+    height: 15.5rem;
+    max-width: 56rem;
 }
