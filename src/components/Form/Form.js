@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import "./form.css";
-import { onGetShoes } from "../Details/actions";
-import { onPostShoes } from "./actions";
+import { onGetShoes, onGetShoe } from "../Details/actions";
+import { onPostShoes, onUpdateShoe } from "./actions";
 import imageUpload from "../images/arrow-up (1).svg";
 import ImageUpload from "./ImageUpload";
 import { Editor } from "react-draft-wysiwyg";
@@ -14,20 +14,65 @@ import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg";
 class App extends Component {
   state = {
     // imageUrl: "",
-    id: new Date(),
-    productName: "",
+    name: "",
     price: "",
     editorState: EditorState.createEmpty()
     // file: "",
     // imagePreviewUrl: ""
   };
+
   // componentDidMount() {
   //   this.props.onGetShoes();
   // }
+
   onChange = editorState => {
     // console.log(description);
     return this.setState({
       editorState
+    });
+  };
+
+  // componentDidUpdate = (nextProps, nextState) => {
+  //   const { name, price, editorState } = nextProps.details;
+
+  //   this.setState({
+  //     name,
+  //     price,
+  //     editorState
+  //   });
+  // };
+
+  componentDidMount() {
+    const params = new URLSearchParams(this.props.location.search);
+    const id = params.get("id");
+    console.log(id);
+    if (id) {
+      this.handleGetShoe(id);
+    }
+  }
+
+  handleGetShoe = id => {
+    this.props.onGetShoe(id);
+  };
+
+  handleUpdate = e => {
+    e.preventDefault();
+    const params = new URLSearchParams(this.props.location.search);
+    const id = params.get("id");
+    const { name, price, description } = this.props.details;
+    const updatedShoeDetails = {
+      id,
+      name,
+      price,
+      description
+    };
+    console.log(updatedShoeDetails);
+    this.props.onUpdateShoe(updatedShoeDetails);
+    this.setState({
+      id: "",
+      name: "",
+      price: "",
+      description: ""
     });
   };
 
@@ -86,6 +131,8 @@ class App extends Component {
   }
 
   render() {
+    let { details } = this.props;
+    console.log(details);
     let { imagePreviewUrl } = this.state;
     let imagePreview = null;
     if (imagePreviewUrl) {
@@ -93,6 +140,7 @@ class App extends Component {
         <img src={imagePreviewUrl} className="upload-size" alt="img preview" />
       );
     }
+    console.log(this.props.details);
     return (
       <div className="form-bg text-center p-4">
         <div className="container-fluid ">
@@ -113,6 +161,8 @@ class App extends Component {
                 placeholder="Enter a digital product name ...."
                 name="name"
                 onChange={e => this.handleInputChange(e)}
+                defaultValue={details.name}
+                contentEditable="true"
               />
               <div className="price-title">Pricing</div>
               <div class="input-group input-group-price">
@@ -123,6 +173,8 @@ class App extends Component {
                   aria-label="price"
                   aria-describedby="button-addon2"
                   name="price"
+                  defaultValue={details.price}
+                  contentEditable="true"
                   onChange={e => this.handleInputChange(e)}
                 />
                 <div class="input-group-append">
@@ -162,8 +214,12 @@ class App extends Component {
                 </button>
               </div>
               <div className=" bd-highlight footer-row">
-                <button type="button" className="btn btn-primary footer-button">
-                  Delete
+                <button
+                  type="button"
+                  className="btn btn-primary footer-button"
+                  onClick={e => this.handleUpdate(e)}
+                >
+                  Update
                 </button>
               </div>
               <div className="bd-highlight footer-row">
@@ -192,13 +248,15 @@ class App extends Component {
   }
 }
 const actioncreators = {
-  onPostShoes
+  onPostShoes,
+  onGetShoe,
+  onUpdateShoe
 };
 
 const mapStateToProps = state => {
-  console.log(state.details.shoes);
+  console.log(state.details.shoe);
   return {
-    details: state.details.shoes
+    details: state.details.shoe
   };
 };
 

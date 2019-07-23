@@ -30,7 +30,7 @@ class Details extends Component {
             <div className="triangle">
               <img
                 src={details.image}
-                alt="Shoe Display Img"
+                alt={`${details.name}`}
                 className="product-image rounded mx-auto d-block"
               />
             </div>
