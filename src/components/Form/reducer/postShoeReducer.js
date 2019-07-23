@@ -1,9 +1,11 @@
 import { ADD_SHOE, DELETE_SHOE, UPDATE_SHOE } from "../actions/types";
+//Initialised the state.
 const initialState = {
   shoe: {},
   shoes: []
 };
 
+//Create reducer for various action types
 export default (state, action) => {
   state = initialState;
 

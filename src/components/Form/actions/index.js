@@ -1,6 +1,7 @@
 import { ADD_SHOE, DELETE_SHOE, UPDATE_SHOE } from "../actions/types";
 import apiPlaceholder from "../../../apis/apiPlaceholder";
 
+//Action for creating a shoe detail
 export const onPostShoes = data => async dispatch => {
   try {
     const response = await apiPlaceholder.post("/footwears", data);
@@ -15,6 +16,7 @@ export const onPostShoes = data => async dispatch => {
   }
 };
 
+//Action for deleting a shoe detail
 export const onDeleteShoe = (id, callback) => async dispatch => {
   try {
     await apiPlaceholder.delete(`/footwears/${id}`);
@@ -33,6 +35,7 @@ export const onDeleteShoe = (id, callback) => async dispatch => {
   }
 };
 
+//Action for Updating a single shoe
 export const onUpdateShoe = data => async dispatch => {
   try {
     const response = await apiPlaceholder.put(`/footwears/{data.id}`, data);
