@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { bindActionCreators } from "redux";
 import "./form.css";
-import { onGetShoes, onGetShoe } from "../Details/actions";
+import { onGetShoe } from "../Details/actions";
 import { onPostShoes, onUpdateShoe } from "./actions";
 import imageUpload from "../images/arrow-up (1).svg";
 import ImageUpload from "./ImageUpload";
@@ -21,42 +20,34 @@ class App extends Component {
     // imagePreviewUrl: ""
   };
 
-  // componentDidMount() {
-  //   this.props.onGetShoes();
-  // }
-
+  //Onchange method for getting the values of from react-draft
   onChange = editorState => {
-    // console.log(description);
     return this.setState({
       editorState
     });
   };
 
-  // componentDidUpdate = (nextProps, nextState) => {
-  //   const { name, price, editorState } = nextProps.details;
-
-  //   this.setState({
-  //     name,
-  //     price,
-  //     editorState
-  //   });
-  // };
-
   componentDidMount() {
+    //Create instance of URLSearchParams
     const params = new URLSearchParams(this.props.location.search);
     const id = params.get("id");
-    console.log(id);
+
+    //Condition to check if id exists
     if (id) {
       this.handleGetShoe(id);
     }
   }
 
+  //event method to get a single shoe detail
   handleGetShoe = id => {
     this.props.onGetShoe(id);
   };
 
+  //event method to update a single detail.
   handleUpdate = e => {
     e.preventDefault();
+
+    //Create instance of URLSearchParams
     const params = new URLSearchParams(this.props.location.search);
     const id = params.get("id");
     const { name, price, description } = this.props.details;
@@ -66,7 +57,8 @@ class App extends Component {
       price,
       description
     };
-    console.log(updatedShoeDetails);
+
+    //Passed updated values to onUpdateShoe method
     this.props.onUpdateShoe(updatedShoeDetails);
     this.setState({
       id: "",
@@ -76,26 +68,32 @@ class App extends Component {
     });
   };
 
+  //submit event method  for passing the data to the database.
   handleSubmit = async e => {
     e.preventDefault();
 
     let convertedData = convertToRaw(
       this.state.editorState.getCurrentContent()
     );
+
+    //Setting the intial property state to the present state.
     const shoe = {
       name: this.state.name,
       price: this.state.price,
       description: convertedData
     };
+
+    //Assigning the data saved to the database to payload object.
     const { payload } = await this.props.onPostShoes(shoe);
-    console.log("handle uploading", payload);
+
     await this.setState({
       editorState: EditorState.createEmpty()
     });
-    console.log(payload);
+
     return payload;
   };
 
+  //Save and publish event method
   handleSaveAndPublish = async e => {
     e.preventDefault(e);
     const { id } = await this.handleSubmit(e);
@@ -103,13 +101,14 @@ class App extends Component {
     this.props.history.push(`/footwears/${id}`);
   };
 
+  //Method for getting the values of the event.
   handleInputChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
     console.log(this.state);
   };
-
+  //Method to get the uploaded image for the local system.
   handleImageChange(e) {
     e.preventDefault();
     let reader = new FileReader();
@@ -131,10 +130,12 @@ class App extends Component {
   }
 
   render() {
+    //Assigning the details object to props.
     let { details } = this.props;
     console.log(details);
     let { imagePreviewUrl } = this.state;
     let imagePreview = null;
+
     if (imagePreviewUrl) {
       imagePreview = (
         <img src={imagePreviewUrl} className="upload-size" alt="img preview" />
@@ -145,7 +146,6 @@ class App extends Component {
       <div className="form-bg text-center p-4">
         <div className="container-fluid ">
           <div className="row">
-            {/* <form onSubmit={e => this.handleSubmit(e)}> */}
             <div className="col-sm-4 my-5">
               <ImageUpload
                 handleImageChange={e => this.handleImageChange(e)}
@@ -165,10 +165,10 @@ class App extends Component {
                 contentEditable="true"
               />
               <div className="price-title">Pricing</div>
-              <div class="input-group input-group-price">
+              <div className="input-group input-group-price">
                 <input
                   type="text"
-                  class="form-control form-control-lg"
+                  className="form-control form-control-lg"
                   placeholder="$0.00"
                   aria-label="price"
                   aria-describedby="button-addon2"
@@ -177,9 +177,9 @@ class App extends Component {
                   contentEditable="true"
                   onChange={e => this.handleInputChange(e)}
                 />
-                <div class="input-group-append">
+                <div className="input-group-append">
                   <button
-                    class="btn btn-outline-secondary"
+                    className="btn btn-outline-secondary"
                     type="button"
                     id="button-addon2"
                   >
@@ -264,3 +264,13 @@ export default connect(
   mapStateToProps,
   actioncreators
 )(App);
+
+App.propTypes = {
+  handleImageChange: PropTypes.func.isRequired,
+  imagePreview: PropTypes.string.isRequired
+};
+
+App.defaultProps = {
+  handleImageChange: () => {},
+  imagePreview: ""
+};

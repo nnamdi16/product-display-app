@@ -1,14 +1,15 @@
-import React, { Fragment } from "react";
+import React from "react";
 import "../Form/form.css";
 
+//Header Component
 const App = () => {
   return (
-    <Fragment className="form-bg text-center p-4">
+    <div className="form-bg text-center p-4">
       <div className="form-bg text-center p-4">
         <h1>Edit Digital Product</h1>
         <nav className="navbar navbar-expand-lg navbar-light form-bg">
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -16,7 +17,7 @@ const App = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon" />
+            <span className="navbar-toggler-icon" />
           </button>
           <div
             className="collapse navbar-collapse menubar"
@@ -57,7 +58,7 @@ const App = () => {
           </div>
         </nav>
       </div>
-    </Fragment>
+    </div>
   );
 };
 
