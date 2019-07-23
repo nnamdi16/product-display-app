@@ -1,24 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { onGetShoe } from "../Details/actions";
-import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import "./Details.css";
 
 class Details extends Component {
+  //Make request to get all the shoe details in the database
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.onGetShoe(id);
   }
 
   render() {
+    //Passed props to detail object.
     const { details } = this.props;
-    console.log(this.props);
-    console.log(details);
-    // const { description } = details;
-    // console.log(description);
     const { description: { blocks } = [] } = details;
-    console.log(blocks);
 
+    //Check if the details object id exists
     if (!details.id) {
       return <div>NO RESULTS FOUND</div>;
     }
@@ -56,11 +54,19 @@ class Details extends Component {
   }
 }
 
+//Connecting the details object form the store to Details Component
 const mapStateToProps = details => {
   return { details: details.details.shoe };
 };
 
+//Connecting the action and the props to the store.
 export default connect(
   mapStateToProps,
   { onGetShoe }
 )(Details);
+
+//Props type checking.
+Details.propTypes = {
+  details: PropTypes.array.isRequired,
+  blocks: PropTypes.array.isRequired
+};

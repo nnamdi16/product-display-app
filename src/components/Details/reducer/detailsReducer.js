@@ -1,9 +1,12 @@
 import { GET_SHOES, GET_SHOE } from "../actions/types";
+
+//Create initialState
 const initialState = {
   shoes: [],
   shoe: {}
 };
 
+//Create reducer for different action types
 export default (state, action) => {
   state = initialState;
 
