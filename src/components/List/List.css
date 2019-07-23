@@ -1,0 +1,17 @@
+.edit-button {
+    width: 5%;
+    height: 5%;
+}
+
+.edit-td {
+    width: 10rem;
+}
+
+.astext {
+    background: none;
+    border-style: dashed;
+    border-bottom: 1px solid #212121;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
