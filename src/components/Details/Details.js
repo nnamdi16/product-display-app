@@ -3,21 +3,30 @@ import { connect } from "react-redux";
 import { onGetShoe } from "../Details/actions";
 import PropTypes from "prop-types";
 import "./Details.css";
+import parse from "html-react-parser";
 
 class Details extends Component {
   //Make request to get all the shoe details in the database
   componentDidMount() {
+    console.log(this.props);
     const { id } = this.props.match.params;
+    console.log(id);
     this.props.onGetShoe(id);
   }
 
   render() {
     //Passed props to detail object.
-    const { details } = this.props;
-    const { description: { blocks } = [] } = details;
+    const details = this.props.details || [];
+    console.log(details);
+    const { description } = details;
+    let blocksFromHTML;
+    if (description) {
+      blocksFromHTML = parse(description);
+    }
+    console.log({ description });
 
-    //Check if the details object id exists
-    if (!details.id) {
+    // Check if the details object id exists
+    if (!details._id) {
       return <div>NO RESULTS FOUND</div>;
     }
 
@@ -39,9 +48,7 @@ class Details extends Component {
             <div>Stars</div>
             <section>
               <h3>INFINITE SUPPORT, TOTAL CONTROL</h3>
-              {blocks.map(block => (
-                <p key={"key"}>{block.text}</p>
-              ))}
+              <div>{blocksFromHTML && blocksFromHTML}</div>
             </section>
             <div>Colors</div>
             <p>Sizes</p>
@@ -55,8 +62,9 @@ class Details extends Component {
 }
 
 //Connecting the details object form the store to Details Component
-const mapStateToProps = details => {
-  return { details: details.details.shoe };
+const mapStateToProps = state => {
+  console.log(state.details.shoe.data);
+  return { details: state.details.shoe.data };
 };
 
 //Connecting the action and the props to the store.
