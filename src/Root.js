@@ -23,7 +23,7 @@ const Root = () => (
       <Suspense fallback="loading...">
         <Switch>
           <App>
-            <Route exact path="/footwears/:id" component={Details} />
+            <Route exact path="/products/:id" component={Details} />
             <Route exact path="/" component={Header} />
             <Route exact path="/" component={List} />
             <Route path="/edit" component={Form} />

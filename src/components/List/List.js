@@ -1,7 +1,6 @@
-import React, { Fragment, Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { bindActionCreators } from "redux";
+// import PropTypes from "prop-types";
 import "../Form/form.css";
 import { onGetShoes } from "../Details/actions";
 import { onDeleteShoe } from "../Form/actions";
@@ -19,31 +18,28 @@ class App extends Component {
     this.props.onGetShoes();
   }
 
-  handleClick = (e, { id }) => {
+  handleClick = (e, { _id }) => {
     e.preventDefault();
-    this.props.history.push(`/footwears/${id}`);
+    console.log({ _id });
+    this.props.history.push(`/products/${_id}`);
   };
 
-  handleDelete = (e, { id }) => {
+  handleDelete = (e, { _id }) => {
     e.preventDefault();
+
     const cb = () => this.props.onGetShoes();
-    this.props.onDeleteShoe(id, cb);
-    console.log(this.props.details);
-
-    // return this.setState({
-    //   details: this.props.details
-    // });
+    this.props.onDeleteShoe(_id, cb);
   };
 
-  handleUpdate = (e, { id }) => {
+  handleUpdate = (e, { _id }) => {
     e.preventDefault();
-    console.log(id);
+    console.log(_id);
     this.setState(
       {
         details: this.props.details
       },
       () => {
-        this.props.history.push(`/edit?id=${id}`);
+        this.props.history.push(`/edit?id=${_id}`);
       }
     );
   };
@@ -51,10 +47,11 @@ class App extends Component {
   renderList() {
     const details = this.props.details || [];
     console.log(details);
-    return details.map(detail => {
+    return details.map((detail, index) => {
+      console.log({ detail });
       return (
-        <tr key={detail.id}>
-          <th scope="row">{detail.id}</th>
+        <tr key={detail._id}>
+          <th scope="row">{index + 1}</th>
           <td className="text-left">{detail.name}</td>
           <td>{detail.price}</td>
           <td>
@@ -91,11 +88,11 @@ class App extends Component {
   }
   render() {
     return (
-      <Fragment>
+      <div className="table-responsive">
         <table className="table table-hover form-bg text-center p-4">
           <thead>
             <tr>
-              <th scope="col-md-1">id</th>
+              <th scope="col-md-1">S/N</th>
               <th scope="col-md-4" className="text-left">
                 Name
               </th>
@@ -106,7 +103,7 @@ class App extends Component {
           </thead>
           <tbody>{this.renderList()}</tbody>
         </table>
-      </Fragment>
+      </div>
     );
   }
 }
@@ -119,7 +116,7 @@ const actionCreators = {
 const mapStateToProps = state => {
   console.log(state);
   return {
-    details: state.details.shoes
+    details: state.details.shoes.data
   };
 };
 export default connect(
