@@ -5,10 +5,10 @@ import apiPlaceholder from "../../../apis/apiPlaceholder";
 //Action creator to get all shoes
 export const onGetShoes = () => async dispatch => {
   try {
-    const shoeDetails = await apiPlaceholder.get("/footwears");
+    const shoeDetails = await apiPlaceholder.get("/products");
     console.log(shoeDetails);
     // const shoeDetails = await getShoes();
-    dispatch({
+    return dispatch({
       type: GET_SHOES,
       payload: shoeDetails.data
     });
@@ -23,9 +23,9 @@ export const onGetShoes = () => async dispatch => {
 
 export const onGetShoe = id => async dispatch => {
   try {
-    const response = await apiPlaceholder.get(`/footwears/${id}`);
+    const response = await apiPlaceholder.get(`/products/${id}`);
     console.log(response);
-    dispatch({
+    return dispatch({
       type: GET_SHOE,
       payload: response.data
     });

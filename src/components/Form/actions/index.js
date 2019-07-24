@@ -2,15 +2,17 @@ import { ADD_SHOE, DELETE_SHOE, UPDATE_SHOE } from "../actions/types";
 import apiPlaceholder from "../../../apis/apiPlaceholder";
 
 //Action for creating a shoe detail
-export const onPostShoes = data => async dispatch => {
+export const onPostShoes = (data, cb) => async dispatch => {
   try {
-    const response = await apiPlaceholder.post("/footwears", data);
+    const response = await apiPlaceholder.post("/products", data);
+    console.log(response);
+    cb();
     return dispatch({
       type: ADD_SHOE,
       payload: response.data
     });
   } catch (error) {
-    console.log(error);
+    console.log({ error });
   } finally {
     console.log("done");
   }
@@ -19,7 +21,8 @@ export const onPostShoes = data => async dispatch => {
 //Action for deleting a shoe detail
 export const onDeleteShoe = (id, callback) => async dispatch => {
   try {
-    await apiPlaceholder.delete(`/footwears/${id}`);
+    console.log({ id });
+    await apiPlaceholder.delete(`/products/${id}`);
     dispatch({
       type: DELETE_SHOE,
       payload: id
@@ -36,9 +39,13 @@ export const onDeleteShoe = (id, callback) => async dispatch => {
 };
 
 //Action for Updating a single shoe
-export const onUpdateShoe = data => async dispatch => {
+export const onUpdateShoe = (data, cb) => async dispatch => {
   try {
-    const response = await apiPlaceholder.put(`/footwears/{data.id}`, data);
+    const { description, image, name, price } = data;
+    const payload = { description, image, name, price };
+
+    const response = await apiPlaceholder.put(`/products/${data.id}`, payload);
+    cb();
     dispatch({
       type: UPDATE_SHOE,
       payload: response.data
