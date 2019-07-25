@@ -10,6 +10,7 @@ import Form from "./components/Form/Form";
 import Details from "./components/Details/Details";
 import Header from "./components/Header/Header";
 import List from "./components/List/List";
+import Loading from "./components/Loader/Loader";
 
 const App = lazy(() => import("./App"));
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -20,7 +21,7 @@ const store = createStore(
 const Root = () => (
   <Provider store={store}>
     <BrowserRouter>
-      <Suspense fallback="loading...">
+      <Suspense fallback={Loading}>
         <Switch>
           <App>
             <Route exact path="/products/:id" component={Details} />
