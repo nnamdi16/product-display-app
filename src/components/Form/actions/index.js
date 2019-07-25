@@ -5,7 +5,6 @@ import apiPlaceholder from "../../../apis/apiPlaceholder";
 export const onPostShoes = (data, cb) => async dispatch => {
   try {
     const response = await apiPlaceholder.post("/products", data);
-    console.log(response);
     cb();
     return dispatch({
       type: ADD_SHOE,
@@ -21,7 +20,6 @@ export const onPostShoes = (data, cb) => async dispatch => {
 //Action for deleting a shoe detail
 export const onDeleteShoe = (id, callback) => async dispatch => {
   try {
-    console.log({ id });
     await apiPlaceholder.delete(`/products/${id}`);
     dispatch({
       type: DELETE_SHOE,
@@ -43,7 +41,6 @@ export const onUpdateShoe = (data, cb) => async dispatch => {
   try {
     const { description, image, name, price } = data;
     const payload = { description, image, name, price };
-
     const response = await apiPlaceholder.put(`/products/${data.id}`, payload);
     cb();
     dispatch({

@@ -7,6 +7,7 @@ import { onDeleteShoe } from "../Form/actions";
 import editBtn from "../images/edit.svg";
 import deleteBtn from "../images/rubbish-bin.svg";
 import "./List.css";
+import { trackPromise } from "react-promise-tracker";
 class App extends Component {
   state = {
     name: "",
@@ -15,25 +16,22 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.props.onGetShoes();
+    trackPromise(this.props.onGetShoes());
   }
 
   handleClick = (e, { _id }) => {
     e.preventDefault();
-    console.log({ _id });
     this.props.history.push(`/products/${_id}`);
   };
 
   handleDelete = (e, { _id }) => {
     e.preventDefault();
-
     const cb = () => this.props.onGetShoes();
     this.props.onDeleteShoe(_id, cb);
   };
 
   handleUpdate = (e, { _id }) => {
     e.preventDefault();
-    console.log(_id);
     this.setState(
       {
         details: this.props.details
@@ -46,9 +44,7 @@ class App extends Component {
 
   renderList() {
     const details = this.props.details || [];
-    console.log(details);
     return details.map((detail, index) => {
-      console.log({ detail });
       return (
         <tr key={detail._id}>
           <th scope="row">{index + 1}</th>
@@ -114,7 +110,6 @@ const actionCreators = {
 };
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     details: state.details.shoes.data
   };
