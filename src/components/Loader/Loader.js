@@ -1,11 +1,17 @@
 import React from "react";
+import { usePromiseTracker } from "react-promise-tracker";
+import Loader from "react-loader-spinner";
+import "./Loader.css";
 
-function ShowDetail() {
+const ShowDetail = props => {
+  const { promiseInProgress } = usePromiseTracker();
   return (
-    <div className="loader center">
-      <i className="fa fa-cog fa-spin" />
-    </div>
+    promiseInProgress && (
+      <div className="loader">
+        <Loader type="ThreeDots" color="#2BAD60" />
+      </div>
+    )
   );
-}
+};
 
 export default ShowDetail;
