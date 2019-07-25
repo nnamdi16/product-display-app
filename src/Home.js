@@ -16,6 +16,7 @@ const App = () => (
         <Route path="/edit" component={Form} />
       </Switch>
     </Suspense>
+    <ShowDetails />
   </div>
 );
 export default App;
