@@ -7,17 +7,22 @@ import { onDeleteShoe } from "../Form/actions";
 import editBtn from "../images/edit.svg";
 import deleteBtn from "../images/rubbish-bin.svg";
 import "./List.css";
-import { trackPromise } from "react-promise-tracker";
+import Loader from "react-loader-spinner";
 class App extends Component {
   state = {
     name: "",
     price: "",
-    description: ""
+    description: "",
+    fetching: false
   };
 
   componentDidMount() {
-    trackPromise(this.props.onGetShoes());
+    this.activityIndicator();
+    this.props.onGetShoes(this.activityIndicator);
   }
+  activityIndicator = () => {
+    this.setState(({ fetching }) => ({ fetching: !fetching }));
+  };
 
   handleClick = (e, { _id }) => {
     e.preventDefault();
@@ -83,6 +88,7 @@ class App extends Component {
     });
   }
   render() {
+    const { fetching } = this.state;
     return (
       <div className="table-responsive">
         <table className="table table-hover form-bg text-center p-4">
@@ -95,10 +101,16 @@ class App extends Component {
               <th scope="col-md-3">Price</th>
               <th scope="col-md-2" />
               <th scope="col-md-2" />
+              <th scope="col-md-2" />
             </tr>
           </thead>
           <tbody>{this.renderList()}</tbody>
         </table>
+        {fetching && (
+          <div className="loader">
+            <Loader type="ThreeDots" color="#2BAD60" />
+          </div>
+        )}
       </div>
     );
   }
