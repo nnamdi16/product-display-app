@@ -2,7 +2,6 @@ import React from "react";
 import imageUpload from "../images/arrow-up (1).svg";
 
 const ImageUpload = ({ handleImageChange, imagePreview }) => {
-  // console.log(props);
   return (
     <div className="input-group mb-3">
       <div className="custom-file file-upload">
