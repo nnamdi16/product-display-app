@@ -11,9 +11,6 @@ import ShowDetails from "./components/Loader/Loader";
 const App = lazy(() => import("./App"));
 const Home = lazy(() => import("./Home"));
 const Details = lazy(() => import("./components/Details/Details"));
-const Form = lazy(() => import("./components/Form/Form"));
-const Header = lazy(() => import("./components/Header/Header"));
-const List = lazy(() => import("./components/List/List"));
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   reducers,
