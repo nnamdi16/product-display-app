@@ -11,6 +11,7 @@ import htmlToDraft from "html-to-draftjs";
 import { EditorState, RichUtils, ContentState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg";
+
 class App extends Component {
   state = {
     name: "",
@@ -51,7 +52,6 @@ class App extends Component {
         const { payload } = await this.props.onGetShoe(id);
         const { name, price, description, image } = payload.data;
         const blocksFromHTML = htmlToDraft(description);
-        console.log("DESCRIPTION", blocksFromHTML);
         const { contentBlocks, entityMap } = blocksFromHTML;
         const contentState = ContentState.createFromBlockArray(
           contentBlocks,
@@ -109,7 +109,6 @@ class App extends Component {
     try {
       const cb = () => this.props.history.push(`/`);
       const payload = await this.props.onPostShoes(shoe, cb);
-      console.log(payload);
       return payload;
     } catch (err) {
       console.log({ err });
