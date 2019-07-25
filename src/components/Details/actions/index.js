@@ -2,9 +2,10 @@ import { GET_SHOES, GET_SHOE } from "./types";
 import apiPlaceholder from "../../../apis/apiPlaceholder";
 
 //Action creator to get all shoes
-export const onGetShoes = () => async dispatch => {
+export const onGetShoes = cb => async dispatch => {
   try {
     const shoeDetails = await apiPlaceholder.get("/products");
+    cb && cb();
     return dispatch({
       type: GET_SHOES,
       payload: shoeDetails.data
