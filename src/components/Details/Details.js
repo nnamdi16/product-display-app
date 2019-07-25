@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { onGetShoe } from "../Details/actions";
-import { trackPromise } from "react-promise-tracker";
 import "./Details.css";
 import parse from "html-react-parser";
 import Container from "./Container";
 import { withRouter } from "react-router-dom";
+import Loader from "react-loader-spinner";
 class Details extends Component {
   state = {
     loading: false
@@ -18,10 +18,11 @@ class Details extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.setActivity();
-    trackPromise(this.props.onGetShoe(id, this.setActivity));
+    this.props.onGetShoe(id, this.setActivity);
   }
 
   render() {
+    const { loading } = this.state;
     //Passed props to detail object.
     const details = this.props.details || {};
     const { description } = details;
@@ -38,6 +39,11 @@ class Details extends Component {
         {empty && <div>NO RESULTS FOUND</div>}
         {fetched && (
           <Container details={details} blocksFromHTML={blocksFromHTML} />
+        )}
+        {loading && (
+          <div className="loader">
+            <Loader type="ThreeDots" color="#2BAD60" />
+          </div>
         )}
       </>
     );
